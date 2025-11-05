@@ -1,0 +1,50 @@
+import { endPoints, Anime } from "./endpoints.js";
+
+const xhr = new XMLHttpRequest();
+
+xhr.addEventListener('load',() => {
+  const response = JSON.parse(xhr.response);
+  handleResponse(response.data)
+})
+
+xhr.open('GET', endPoints[0].url);
+xhr.send();
+
+
+function handleResponse(response) {
+  const animeList = response.map(animeDetails => new Anime(animeDetails));
+  renderHTML(animeList);
+}
+
+function renderHTML(animeList) {
+  let animeHTML = '';
+
+  animeList.forEach((anime) => {
+    animeHTML += `
+      <a href="anime-quotes.html" class="anime-container">
+        <img class="anime-cover-image" src="${anime.largeImage}" alt="" width="100%">
+
+        <div class="overlay"></div>
+
+        <div class="anime-info">
+          <p class="anime-name">
+            Sous no Friew
+          </p>
+          
+          <div class="anime-stats">
+            <p>TV</p>
+            <p class="ratings">9.2</p>
+            <p class="view">1235467</p>
+          </div>
+        </div>
+      
+        <div class="tooltip">
+          Click to View Anime quotes
+        </div>
+      </a>
+    `;
+  })
+
+  document.querySelector('.js-anime-grid').
+    innerHTML = animeHTML;
+}
