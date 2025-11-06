@@ -28,13 +28,13 @@ function renderHTML(animeList) {
 
         <div class="anime-info">
           <p class="anime-name">
-            Sous no Friew
+            ${anime.title}
           </p>
           
           <div class="anime-stats">
-            <p>TV</p>
-            <p class="ratings">9.2</p>
-            <p class="view">1235467</p>
+            <p></p>
+            <p class="ratings">${anime.score}</p>
+            <p class="view">${anime.episodes}</p>
           </div>
         </div>
       

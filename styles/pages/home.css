@@ -52,6 +52,12 @@ header {
 .anime-option {
   font-size: var(--font-size-b);
   margin: var(--font-size-b) 0;
+  width: 100%;
+  padding: 5px 0;
+  border: 1px solid var(--text-color);
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
 }
 
 .anime-grid {
@@ -78,7 +84,7 @@ header {
 
 .anime-name {
   font-weight: 600;
-  font-size: var(--font-size-s)
+  font-size: var(--font-size-xm)
 }
 
 .anime-stats {
