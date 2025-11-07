@@ -1,15 +1,24 @@
-import { endPoints, Anime } from "./endpoints.js";
+import { Anime } from "./endpoints.js";
 
-const xhr = new XMLHttpRequest();
-
-xhr.addEventListener('load',() => {
-  const response = JSON.parse(xhr.response);
-  handleResponse(response.data)
+const selectEle = document.getElementById('category');
+selectEle.addEventListener('change', (e) => {
+  const category = selectEle.value;
+  getAnimeList(category)
 })
 
-xhr.open('GET', endPoints[0].url);
-xhr.send();
+getAnimeList('top/anime');
 
+function getAnimeList(category) {
+  const xhr = new XMLHttpRequest();
+  
+  xhr.addEventListener('load',() => {
+    const response = JSON.parse(xhr.response);
+    handleResponse(response.data)
+  })
+  
+  xhr.open('GET', `https://api.jikan.moe/v4/${category}`);
+  xhr.send();
+}
 
 function handleResponse(response) {
   const animeList = response.map(animeDetails => new Anime(animeDetails));
