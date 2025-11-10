@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="styles/general.css">
   <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/pages/home.css">
 </head>
 <body>
@@ -16,8 +17,17 @@
       Anime <span class="quote-name">Quotes</span>
     </a>
 
+    <div class="search-row">
+      <input class="search-input" 
+        type="text" 
+        placeholder="Search anime">
+      <button class="search-box">
+        <img class="search-icon" src="images/icons/search.svg" alt="">
+      </button>
+    </div>
+
     <div class="right-header-section">
-      <div class="box-icon">
+      <div class="box-icon search-icon-box js-search-icon">
         <img class="icon" src="images/icons/search.svg" alt="">
       </div>
       <div class="box-icon">
@@ -27,6 +37,16 @@
   </header>
   <main>
     <div class="main-container">
+
+     <div class=" before-click js-clicked-search">
+      <input class="search-input" 
+        type="text" 
+        placeholder="Search anime">
+      <button class="search-box">
+        <img class="search-icon" src="images/icons/search.svg" alt="">
+      </button>
+    </div>
+
       <select id="category" class="anime-option">
         <option value="random/anime">Random anime</option>
         <option value="top/anime">Top anime</option>

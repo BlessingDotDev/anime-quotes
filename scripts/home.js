@@ -1,4 +1,5 @@
 import { Anime } from "./endpoints.js";
+import {toggleSearch} from "./header.js";
 
 const selectEle = document.getElementById('category');
 selectEle.addEventListener('change', (e) => {
@@ -57,3 +58,6 @@ function renderHTML(animeList) {
   document.querySelector('.js-anime-grid').
     innerHTML = animeHTML;
 }
+
+
+toggleSearch();
