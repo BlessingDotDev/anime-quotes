@@ -1,32 +1,12 @@
-import { Anime } from "./endpoints.js";
+import {getAnimeList} from "./endpoints.js";
 import {toggleSearch} from "./header.js";
+import {renderPagination} from "./Utils/pagination.js"
 
-const selectEle = document.getElementById('category');
-selectEle.addEventListener('change', (e) => {
-  const category = selectEle.value;
-  getAnimeList(category)
-})
-
+loadInitialAnime()
 getAnimeList('top/anime');
+toggleSearch();
 
-function getAnimeList(category) {
-  const xhr = new XMLHttpRequest();
-  
-  xhr.addEventListener('load',() => {
-    const response = JSON.parse(xhr.response);
-    handleResponse(response.data)
-  })
-  
-  xhr.open('GET', `https://api.jikan.moe/v4/${category}`);
-  xhr.send();
-}
-
-function handleResponse(response) {
-  const animeList = response.map(animeDetails => new Anime(animeDetails));
-  renderHTML(animeList);
-}
-
-function renderHTML(animeList) {
+export function renderHTML(animeList) {
   let animeHTML = '';
 
   animeList.forEach((anime) => {
@@ -49,15 +29,23 @@ function renderHTML(animeList) {
         </div>
       
         <div class="tooltip">
-          Click to View Anime quotes
+        Click to View Anime quotes
         </div>
-      </a>
-    `;
-  })
-
-  document.querySelector('.js-anime-grid').
-    innerHTML = animeHTML;
+        </a>
+        `;
+      })
+      
+      document.querySelector('.js-anime-grid').
+      innerHTML = animeHTML;
+      
+  renderPagination();
 }
 
 
-toggleSearch();
+function loadInitialAnime() {
+  const selectEle = document.getElementById('category');
+  selectEle.addEventListener('change', () => {
+    const category = selectEle.value;
+    getAnimeList(category)
+  })
+}
