@@ -1,11 +1,23 @@
-import {LoadAnimeList, animeList} from "./endpoints.js";
+import {loadAnimeList, animeList, loadSeachAnime} from "./endpoints.js";
 import {toggleSearch} from "./header.js";
 import {renderPagination} from "./Utils/pagination.js"
+import { name } from "./index.js";
 
-
-loadInitialAnime()
-LoadAnimeList('top/anime', renderHTML);
 toggleSearch();
+loadInitialAnime();
+
+if(name) {
+  
+  const animeName = name[0];
+  console.log(name)
+  new Promise((resolve) => {
+    loadSeachAnime(animeName, () => {
+      resolve()
+    })
+  }).then(() => {
+    renderHTML();
+  })
+}
 
 function renderHTML() {
   let animeHTML = '';
@@ -48,6 +60,7 @@ function loadInitialAnime() {
   
   selectEle.addEventListener('change', () => {
     const category = selectEle.value;
-    LoadAnimeList(category, renderHTML)
+    loadAnimeList(category, renderHTML)
   })
 }
+  

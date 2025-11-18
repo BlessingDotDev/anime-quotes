@@ -18,7 +18,7 @@ export class Anime {
 
 export let animeList = [];
 
-export function LoadAnimeList(category, fun) {
+export function loadAnimeList(category, fun) {
   const xhr = new XMLHttpRequest();
   
   xhr.addEventListener('load',() => {
@@ -31,5 +31,21 @@ export function LoadAnimeList(category, fun) {
   })
   
   xhr.open('GET', `https://api.jikan.moe/v4/${category}`);
+  xhr.send();
+}
+
+export function loadSeachAnime(animeName, fun) {
+  const xhr = new XMLHttpRequest();
+  
+  xhr.addEventListener('load',() => {
+    animeList = JSON.parse(xhr.response).data.map((animeDetails) => {
+      return (
+        new Anime(animeDetails)
+      );
+    })
+    fun()
+  })
+  
+  xhr.open('GET', `https://api.jikan.moe/v4/anime?q=${animeName}`);
   xhr.send();
 }
