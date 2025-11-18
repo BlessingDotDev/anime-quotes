@@ -8,13 +8,14 @@ loadInitialAnime();
 
 if (name) {
   const animeName = name[0];
-
+  
   new Promise((resolve) => {
     loadSeachAnime(animeName, () => {
       resolve()
     })
   }).then(() => {
     renderHTML();
+    window.alert(`Site still in progress, \nLove you Ses Mbhoni. `);
   })
 
 } 
