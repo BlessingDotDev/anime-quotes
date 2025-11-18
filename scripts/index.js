@@ -7,12 +7,19 @@ localStorage.removeItem('anime-name');
 
 if (searchButton && inputElem) {
   searchButton.addEventListener('click', () => {
-    
-    const animeName = inputElem.value;
-    name.push(animeName);
-    
-    localStorage.setItem('anime-name', JSON.stringify(name));
-    window.location.href = 'home.html'
+  saveSearchValue();  
   })
+
+  inputElem.addEventListener('keydown', (event) => {
+    event.key === 'Enter' && saveSearchValue();
+  })
+}
+
+function saveSearchValue() {
+  const animeName = inputElem.value;
+  name.push(animeName);
+  
+  localStorage.setItem('anime-name', JSON.stringify(name));
+  window.location.href = 'home.html'
 }
 
