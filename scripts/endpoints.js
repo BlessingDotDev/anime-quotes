@@ -1,5 +1,3 @@
-import { renderHTML } from "./home.js";
-
 export class Anime {
   id;
   episodes;
@@ -18,19 +16,20 @@ export class Anime {
   }
 }
 
-export function getAnimeList(category) {
+export let animeList = [];
+
+export function LoadAnimeList(category, fun) {
   const xhr = new XMLHttpRequest();
   
   xhr.addEventListener('load',() => {
-    const response = JSON.parse(xhr.response);
-    handleResponse(response.data)
+    animeList = JSON.parse(xhr.response).data.map((animeDetails) => {
+      return (
+        new Anime(animeDetails)
+      );
+    })
+    fun()
   })
   
   xhr.open('GET', `https://api.jikan.moe/v4/${category}`);
   xhr.send();
-}
-
-function handleResponse(response) {
-  const animeList = response.map(animeDetails => new Anime(animeDetails));
-  renderHTML(animeList);
 }

@@ -26,6 +26,9 @@ main {
 
   display: flex;
   justify-content: space-evenly;
+  column-gap: 10px;
+  row-gap: 10px;
+  flex-wrap: wrap;
 }
 
 .navbar a {
@@ -34,6 +37,7 @@ main {
   padding-bottom: 5px;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s ease-in-out;
+  text-wrap: nowrap;
 }
 
 .navbar a:hover {

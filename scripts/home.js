@@ -1,12 +1,13 @@
-import {getAnimeList} from "./endpoints.js";
+import {LoadAnimeList, animeList} from "./endpoints.js";
 import {toggleSearch} from "./header.js";
 import {renderPagination} from "./Utils/pagination.js"
 
+
 loadInitialAnime()
-getAnimeList('top/anime');
+LoadAnimeList('top/anime', renderHTML);
 toggleSearch();
 
-export function renderHTML(animeList) {
+function renderHTML() {
   let animeHTML = '';
 
   animeList.forEach((anime) => {
@@ -44,8 +45,9 @@ export function renderHTML(animeList) {
 
 function loadInitialAnime() {
   const selectEle = document.getElementById('category');
+  
   selectEle.addEventListener('change', () => {
     const category = selectEle.value;
-    getAnimeList(category)
+    LoadAnimeList(category, renderHTML)
   })
 }
