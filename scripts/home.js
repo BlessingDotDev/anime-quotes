@@ -6,10 +6,9 @@ import { name } from "./index.js";
 toggleSearch();
 loadInitialAnime();
 
-if(name) {
-  
+if (name) {
   const animeName = name[0];
-  console.log(name)
+
   new Promise((resolve) => {
     loadSeachAnime(animeName, () => {
       resolve()
@@ -17,7 +16,8 @@ if(name) {
   }).then(() => {
     renderHTML();
   })
-}
+
+} 
 
 function renderHTML() {
   let animeHTML = '';

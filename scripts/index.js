@@ -1,7 +1,6 @@
 const inputElem = document.querySelector('.js-search-input');
 const searchButton = document.querySelector('.js-search-box');
 
-
 export const name = JSON.parse(localStorage.getItem('anime-name')) || [];
 
 localStorage.removeItem('anime-name');
