@@ -30,7 +30,7 @@ export function loadAnimeList(category, fun) {
     fun()
   })
   
-  xhr.open('GET', `https://api.jikan.moe/v4/${category}`);
+  xhr.open('GET', `https://api.jikan.moe/v4/${category}?page=${1}`);
   xhr.send();
 }
 

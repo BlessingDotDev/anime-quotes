@@ -15,7 +15,7 @@ if (name) {
     })
   }).then(() => {
     renderHTML();
-    window.alert(`Site still in progress, \nLove you Ses Mbhoni. `);
+    window.alert(`Site still in progress.`);
   })
 
 } 
