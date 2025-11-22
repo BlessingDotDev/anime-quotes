@@ -50,9 +50,7 @@ function renderHTML() {
       
   document.querySelector('.js-anime-grid').
     innerHTML = animeHTML;
-
 }
-
 
 function loadInitialAnime() {
   const selectEle = document.getElementById('category');
@@ -98,7 +96,6 @@ export function createPagination(pagination) {
     }
 
     paginationContainer.appendChild(btn);
-    console.log('hello')
   }
 
   // Next button

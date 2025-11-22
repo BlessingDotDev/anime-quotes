@@ -32,7 +32,6 @@ export function loadAnimeList(category, fun, page = 1) {
     fun()
 
     const data = JSON.parse(xhr.response);
-    console.log(data.pagination)
     createPagination(data.pagination)
   })
   
@@ -40,7 +39,7 @@ export function loadAnimeList(category, fun, page = 1) {
   xhr.send();
 }
 
-export function loadSeachAnime(animeName, fun) {
+export function loadSeachAnime(animeName, fun, page = 1) {
   const xhr = new XMLHttpRequest();
   
   xhr.addEventListener('load',() => {
@@ -50,8 +49,11 @@ export function loadSeachAnime(animeName, fun) {
       );
     })
     fun()
+
+    const data = JSON.parse(xhr.response);
+    createPagination(data.pagination)
   })
   
-  xhr.open('GET', `https://api.jikan.moe/v4/anime?q=${animeName}`);
+  xhr.open('GET', `https://api.jikan.moe/v4/anime?q=${animeName}&page=${page}`);
   xhr.send();
 }
