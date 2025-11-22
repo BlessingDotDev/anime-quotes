@@ -1,9 +1,11 @@
-import {loadAnimeList, animeList, loadSeachAnime} from "./endpoints.js";
+import {animeList, loadAnimeListFetch} from "./endpoints.js";
 import {toggleSearch} from "./header.js";
 import { name } from "./index.js";
 
 toggleSearch();
 loadInitialAnime();
+
+/*
 
 if (name) {
   const animeName = name[0];
@@ -18,6 +20,8 @@ if (name) {
   })
 
 } 
+
+*/
 
 function renderHTML() {
   let animeHTML = '';
@@ -52,12 +56,17 @@ function renderHTML() {
     innerHTML = animeHTML;
 }
 
+async function loadAnime(category) {
+  await loadAnimeListFetch(category);
+  renderHTML();
+}
+
 function loadInitialAnime() {
   const selectEle = document.getElementById('category');
   
   selectEle.addEventListener('change', () => {
     const category = selectEle.value;
-    loadAnimeList(category, renderHTML)
+    loadAnime(category);
   })
 }
 
