@@ -2,8 +2,6 @@ import {animeList, loadAnimeListFetch, loadSeachAnimeFetch} from "./endpoints.js
 import {toggleSearch} from "./header.js";
 import { name } from "./index.js";
 
-toggleSearch();
-loadInitialAnime();
 
 name && renderSearchAnime(name);
 
@@ -13,8 +11,7 @@ async function renderSearchAnime(name) {
   renderHTML();
 }
 
-
-function renderHTML() {
+export function renderHTML() {
   let animeHTML = '';
 
   animeList.forEach((anime) => {
@@ -33,8 +30,8 @@ function renderHTML() {
             <p></p>
             <p class="ratings">${anime.score}</p>
             <p class="view">${anime.episodes}</p>
-          </div>
-        </div>
+            </div>
+            </div>
       
         <div class="tooltip">
         Click to View Anime quotes
@@ -42,15 +39,13 @@ function renderHTML() {
         </a>
         `;
       })
-      
+
   document.querySelector('.js-anime-grid').
     innerHTML = animeHTML;
 }
 
-async function loadAnime(category) {
-  await loadAnimeListFetch(category);
-  renderHTML();
-}
+toggleSearch();
+loadInitialAnime();
 
 function loadInitialAnime() {
   const selectEle = document.getElementById('category');
@@ -59,58 +54,12 @@ function loadInitialAnime() {
     const category = selectEle.value;
     loadAnime(category);
   })
-}
 
-const paginationContainer = document.querySelector('.js-pagination-container');
-
-let currentPage = 1;
-
-/*
-export function createPagination(pagination) {
-
-  const totalPages = pagination.last_visible_page;
-  paginationContainer.innerHTML = '';
-
-  //Prev Button
-  const prevBtn = document.createElement('button');
-  prevBtn.textContent = 'Prev';
-  prevBtn.disabled = currentPage === 1;
-  prevBtn.onclick = () => {
-    const selectEle = document.getElementById('category');
-
-    const category = selectEle.value;
-    currentPage --,
-    loadAnimeList(category, renderHTML, currentPage)
-  };
-  paginationContainer.appendChild(prevBtn);
-
-  //Page Numbers
-  for (let i = 1; i <= totalPages && i <= 10; i++) {
-    const btn = document.createElement('button');
-    btn.textContent = i;
-    if (i === currentPage) btn.classList.add('active');
-    btn.onclick = () => {
-       const selectEle = document.getElementById('category');
-      const category = selectEle.value;
-      currentPage = i;
-      loadAnimeList(category, renderHTML, i);
-    }
-
-    paginationContainer.appendChild(btn);
+  async function loadAnime(category) {
+    await loadAnimeListFetch(category);
+    renderHTML();
   }
-
-  // Next button
-  const nextBtn = document.createElement('button');
-  nextBtn.textContent = 'Next';
-  nextBtn.disabled = !pagination.has_next_page;
-  nextBtn.onclick = () => {
-    const selectEle = document.getElementById('category');
-
-    const category = selectEle.value;
-    currentPage++;
-    loadAnimeList(category, renderHTML,currentPage)
-  };
-  paginationContainer.appendChild(nextBtn);
 }
-  
-*/
+
+export const paginationContainer = document.querySelector('.js-pagination-container');
+export const selectEle = document.getElementById('category');

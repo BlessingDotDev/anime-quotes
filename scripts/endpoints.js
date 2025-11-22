@@ -1,4 +1,4 @@
-//import { createPagination } from "./home.js";
+import { createPagination } from "./pagination.js";
 
 export class Anime {
   id;
@@ -33,7 +33,7 @@ export async function loadAnimeListFetch(category, page = 1) {
     );
   });
 
-  //createPagination(data.pagination);
+  createPagination(data.pagination);
 }
 
 export async function loadSeachAnimeFetch(animeName, page = 1) {
@@ -47,5 +47,5 @@ export async function loadSeachAnimeFetch(animeName, page = 1) {
     );
   });
 
-  //createPagination(data.pagination);
+  createPagination(data.pagination);
 }
