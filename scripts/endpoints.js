@@ -1,3 +1,5 @@
+import { createPagination } from "./home.js";
+
 export class Anime {
   id;
   episodes;
@@ -18,7 +20,7 @@ export class Anime {
 
 export let animeList = [];
 
-export function loadAnimeList(category, fun) {
+export function loadAnimeList(category, fun, page = 1) {
   const xhr = new XMLHttpRequest();
   
   xhr.addEventListener('load',() => {
@@ -28,9 +30,13 @@ export function loadAnimeList(category, fun) {
       );
     })
     fun()
+
+    const data = JSON.parse(xhr.response);
+    console.log(data.pagination)
+    createPagination(data.pagination)
   })
   
-  xhr.open('GET', `https://api.jikan.moe/v4/${category}?page=${1}`);
+  xhr.open('GET', `https://api.jikan.moe/v4/${category}?page=${page}`);
   xhr.send();
 }
 

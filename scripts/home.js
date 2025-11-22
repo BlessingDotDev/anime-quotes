@@ -1,6 +1,5 @@
 import {loadAnimeList, animeList, loadSeachAnime} from "./endpoints.js";
 import {toggleSearch} from "./header.js";
-import {renderPagination} from "./Utils/pagination.js"
 import { name } from "./index.js";
 
 toggleSearch();
@@ -15,7 +14,7 @@ if (name) {
     })
   }).then(() => {
     renderHTML();
-    window.alert(`Site still in progress.`);
+   // window.alert(`Site still in progress.`);
   })
 
 } 
@@ -49,10 +48,9 @@ function renderHTML() {
         `;
       })
       
-      document.querySelector('.js-anime-grid').
-      innerHTML = animeHTML;
-      
-  renderPagination();
+  document.querySelector('.js-anime-grid').
+    innerHTML = animeHTML;
+
 }
 
 
@@ -63,5 +61,57 @@ function loadInitialAnime() {
     const category = selectEle.value;
     loadAnimeList(category, renderHTML)
   })
+}
+
+const paginationContainer = document.querySelector('.js-pagination-container');
+
+let currentPage = 1;
+
+export function createPagination(pagination) {
+
+  const totalPages = pagination.last_visible_page;
+  paginationContainer.innerHTML = '';
+
+  //Prev Button
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = 'Prev';
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.onclick = () => {
+    const selectEle = document.getElementById('category');
+
+    const category = selectEle.value;
+    currentPage --,
+    loadAnimeList(category, renderHTML, currentPage)
+  };
+  paginationContainer.appendChild(prevBtn);
+
+  //Page Numbers
+  for (let i = 1; i <= totalPages && i <= 10; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    if (i === currentPage) btn.classList.add('active');
+    btn.onclick = () => {
+       const selectEle = document.getElementById('category');
+      const category = selectEle.value;
+      currentPage = i;
+      loadAnimeList(category, renderHTML, i);
+    }
+
+    paginationContainer.appendChild(btn);
+    console.log('hello')
+  }
+
+  // Next button
+  const nextBtn = document.createElement('button');
+  nextBtn.textContent = 'Next';
+  nextBtn.disabled = !pagination.has_next_page;
+  nextBtn.onclick = () => {
+    const selectEle = document.getElementById('category');
+
+    const category = selectEle.value;
+    currentPage++;
+    loadAnimeList(category, renderHTML,currentPage)
+  };
+  paginationContainer.appendChild(nextBtn);
 }
   
