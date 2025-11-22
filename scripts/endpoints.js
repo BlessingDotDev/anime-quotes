@@ -1,4 +1,4 @@
-import { createPagination } from "./home.js";
+//import { createPagination } from "./home.js";
 
 export class Anime {
   id;
@@ -21,7 +21,6 @@ export class Anime {
 export let animeList = [];
 
 export async function loadAnimeListFetch(category, page = 1) {
-
   const response = await fetch(
     `https://api.jikan.moe/v4/${category}?page=${page}`
   );
@@ -34,27 +33,19 @@ export async function loadAnimeListFetch(category, page = 1) {
     );
   });
 
-  createPagination(data.pagination);
+  //createPagination(data.pagination);
 }
 
-/*
+export async function loadSeachAnimeFetch(animeName, page = 1) {
+  const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeName}&page=${page}`);
 
-export function loadSeachAnime(animeName, fun, page = 1) {
-  const xhr = new XMLHttpRequest();
-  
-  xhr.addEventListener('load',() => {
-    animeList = JSON.parse(xhr.response).data.map((animeDetails) => {
-      return (
-        new Anime(animeDetails)
-      );
-    })
-    fun()
+  const data = await response.json();
 
-    const data = JSON.parse(xhr.response);
-    createPagination(data.pagination)
-  })
-  
-  xhr.open('GET', `https://api.jikan.moe/v4/anime?q=${animeName}&page=${page}`);
-  xhr.send();
+  animeList = data.data.map((animeDetails) => {
+    return (
+      new Anime(animeDetails)
+    );
+  });
+
+  //createPagination(data.pagination);
 }
-*/

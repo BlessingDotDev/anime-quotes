@@ -1,27 +1,18 @@
-import {animeList, loadAnimeListFetch} from "./endpoints.js";
+import {animeList, loadAnimeListFetch, loadSeachAnimeFetch} from "./endpoints.js";
 import {toggleSearch} from "./header.js";
 import { name } from "./index.js";
 
 toggleSearch();
 loadInitialAnime();
 
-/*
+name && renderSearchAnime(name);
 
-if (name) {
+async function renderSearchAnime(name) {
   const animeName = name[0];
-  
-  new Promise((resolve) => {
-    loadSeachAnime(animeName, () => {
-      resolve()
-    })
-  }).then(() => {
-    renderHTML();
-   // window.alert(`Site still in progress.`);
-  })
+  await loadSeachAnimeFetch(animeName);
+  renderHTML();
+}
 
-} 
-
-*/
 
 function renderHTML() {
   let animeHTML = '';
@@ -74,6 +65,7 @@ const paginationContainer = document.querySelector('.js-pagination-container');
 
 let currentPage = 1;
 
+/*
 export function createPagination(pagination) {
 
   const totalPages = pagination.last_visible_page;
@@ -121,3 +113,4 @@ export function createPagination(pagination) {
   paginationContainer.appendChild(nextBtn);
 }
   
+*/
