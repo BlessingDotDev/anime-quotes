@@ -21,31 +21,38 @@ export class Anime {
 export let animeList = [];
 
 export async function loadAnimeListFetch(category, page = 1) {
-  const response = await fetch(
-    `https://api.jikan.moe/v4/${category}?page=${page}`
-  );
-
-  const data = await response.json();
-
-  animeList = data.data.map((animeDetails) => {
-    return (
-      new Anime(animeDetails)
+  try {
+    const response = await fetch(
+      `https://api.jikan.moe/v4/${category}?page=${page}`
     );
-  });
+    const data = await response.json();
+  
+    animeList = data.data.map((animeDetails) => {
+      return (
+        new Anime(animeDetails)
+      );
+    });
+    createPagination(data.pagination);
 
-  createPagination(data.pagination);
+  } catch (error) {
+    window.alert('Unexpected error. Please try again later.');
+  }
 }
 
 export async function loadSeachAnimeFetch(animeName, page = 1) {
-  const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeName}&page=${page}`);
+  try {
+    const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeName}&page=${page}`);
+  
+    const data = await response.json();
+  
+    animeList = data.data.map((animeDetails) => {
+      return (
+        new Anime(animeDetails)
+      );
+    });
+    createPagination(data.pagination);
 
-  const data = await response.json();
-
-  animeList = data.data.map((animeDetails) => {
-    return (
-      new Anime(animeDetails)
-    );
-  });
-
-  createPagination(data.pagination);
+  } catch(error) {
+    window.alert('Unexpected error. Please try again later.');
+  }
 }
