@@ -34,7 +34,7 @@ export function renderHTML() {
             </div>
       
         <div class="tooltip">
-        Click to View Anime quotes
+        Click fpr Anime characters
         </div>
         </a>
         `;
