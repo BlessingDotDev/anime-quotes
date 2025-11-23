@@ -34,7 +34,7 @@ export function renderHTML() {
             </div>
       
         <div class="tooltip">
-        Click fpr Anime characters
+        Click for Anime characters
         </div>
         </a>
         `;
