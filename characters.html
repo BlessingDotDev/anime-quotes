@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Anime Character Explorer</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/styles/variables.css">
+    <link rel="stylesheet" href="./styles/general.css">
+    <link rel="stylesheet" href="./styles/pages/characters.css"/>
+</head>
+<body>
+    <div>
+        <h1 class="title">Anime Character Explorer</h1>
+
+        <div class="search-area">
+            <input type="text" id="animeSearchInput" placeholder="Search Anime By Name..." />
+            <button id="searchBtn">Search</button>
+        </div>
+    </header>
+
+    <section id="animeInfo" class="anime-info"></section>
+
+    <section class="pagination">
+        <button id="prevPage">⬅ Previous</button>
+        <span id="pageNumber">Page 1</span>
+        <button id="nextPage">Next ➡</button>
+    </section>
+
+    <section id="charactersContainer" class="characters-grid"></section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="modalImg" class="modal-img" />
+            <h2 id="modalName"></h2>
+            <p id="modalRole"></p>
+            <p id="modalFavorites"></p>
+            <a id="modalLink" href="#" target="_blank">View Full Profile</a>
+        </div>
+    </div>
+
+    <script src="scripts/characters.js"></script>
+</body>
+</html>

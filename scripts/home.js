@@ -16,7 +16,7 @@ export function renderHTML() {
 
   animeList.forEach((anime) => {
     animeHTML += `
-      <a href="anime-quotes.html" class="anime-container">
+      <a href="characters.html" class="anime-container">
         <img class="anime-cover-image" src="${anime.largeImage}" alt="" width="100%">
 
         <div class="overlay"></div>
