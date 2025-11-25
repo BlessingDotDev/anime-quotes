@@ -2,6 +2,7 @@ import {animeList, loadAnimeListFetch, loadSeachAnimeFetch} from "./endpoints.js
 import {toggleSearch} from "./header.js";
 import { name } from "./index.js";
 
+loadByCategory();
 
 name && renderSearchAnime(name);
 
@@ -47,6 +48,11 @@ export function renderHTML() {
 toggleSearch();
 loadInitialAnime();
 
+async function loadAnime(category) {
+  await loadAnimeListFetch(category);
+  renderHTML();
+}
+
 function loadInitialAnime() {
   const selectEle = document.getElementById('category');
   
@@ -54,10 +60,16 @@ function loadInitialAnime() {
     const category = selectEle.value;
     loadAnime(category);
   })
+}
 
-  async function loadAnime(category) {
-    await loadAnimeListFetch(category);
-    renderHTML();
+
+function loadByCategory() {
+  const url = new URL(window.location.href);
+  const categoryQuery = url.searchParams.get('query');
+  console.log(categoryQuery)
+  
+  if (categoryQuery) {
+   loadAnime(categoryQuery)
   }
 }
 
