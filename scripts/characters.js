@@ -109,6 +109,27 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
     await getAnimeCharacters(id, currentPage);
 });
 
+  const url = new URL(window.location.href);
+  const animeName = url.searchParams.get('query');
+  console.log(animeName)
+
+  if (animeName) {
+    loadAnimeCharacters(animeName)
+  }
+
+  async function loadAnimeCharacters(name) {
+    if (!name) return alert("Enter an anime name!");
+
+    const id = await searchAnime(name);
+    if (!id) return;
+
+    currentAnimeId = id;
+    currentPage = 1;
+
+    await getAnimeCharacters(id, currentPage);
+  }
+
+
 // Pagination
 document.getElementById("nextPage").addEventListener("click", () => {
     currentPage++;
