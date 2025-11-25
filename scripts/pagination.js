@@ -1,6 +1,5 @@
 import { loadAnimeListFetch, loadSeachAnimeFetch } from "./endpoints.js";
 import { renderHTML, paginationContainer, selectEle } from "./home.js";
-import { name } from "./index.js";
 
 let currentPage = 1;
 

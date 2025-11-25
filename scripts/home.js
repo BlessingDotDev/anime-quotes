@@ -1,23 +1,15 @@
 import {animeList, loadAnimeListFetch, loadSeachAnimeFetch} from "./endpoints.js";
 import {toggleSearch} from "./header.js";
-import { name } from "./index.js";
 
 loadByCategory();
-
-name && renderSearchAnime(name);
-
-async function renderSearchAnime(name) {
-  const animeName = name[0];
-  await loadSeachAnimeFetch(animeName);
-  renderHTML();
-}
+loadByName();
 
 export function renderHTML() {
   let animeHTML = '';
 
   animeList.forEach((anime) => {
     animeHTML += `
-      <a href="characters.html" class="anime-container">
+      <a href="characters.html?query=${anime.title}" class="anime-container">
         <img class="anime-cover-image" src="${anime.largeImage}" alt="" width="100%">
 
         <div class="overlay"></div>
@@ -52,6 +44,10 @@ async function loadAnime(category) {
   await loadAnimeListFetch(category);
   renderHTML();
 }
+async function LoadSearchAnime(animeName) {
+  await loadSeachAnimeFetch(animeName);
+  renderHTML();
+}
 
 function loadInitialAnime() {
   const selectEle = document.getElementById('category');
@@ -66,12 +62,21 @@ function loadInitialAnime() {
 function loadByCategory() {
   const url = new URL(window.location.href);
   const categoryQuery = url.searchParams.get('query');
-  console.log(categoryQuery)
   
   if (categoryQuery) {
    loadAnime(categoryQuery)
   }
 }
+
+function loadByName() {
+  const url = new URL(window.location.href);
+  const searchAnime = url.searchParams.get('search');
+  
+  if (searchAnime) {
+    LoadSearchAnime(searchAnime)
+  }
+}
+
 
 export const paginationContainer = document.querySelector('.js-pagination-container');
 export const selectEle = document.getElementById('category');
