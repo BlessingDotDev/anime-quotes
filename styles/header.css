@@ -63,6 +63,36 @@ header {
 
 }
 
+.menu-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  background-color: var(--accent-color);
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  padding: 0 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: max-height 0.3s ease;
+}
+
+.menu-open {
+  max-height: 150px;
+}
+
+.menu-dropdown a {
+  display: block;
+  color: var(--bg-color);
+  padding: 10px 0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu-dropdown a:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
 .search-input {
   flex: 1;
   padding: 8px;

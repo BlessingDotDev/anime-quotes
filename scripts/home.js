@@ -1,5 +1,5 @@
 import {animeList, loadAnimeListFetch, loadSeachAnimeFetch} from "./endpoints.js";
-import {toggleSearch} from "./header.js";
+import {toggleSearch, toggleMenu} from "./header.js";
 
 loadByCategory();
 loadByName();
@@ -38,6 +38,7 @@ export function renderHTML() {
 }
 
 toggleSearch();
+toggleMenu();
 loadInitialAnime();
 
 const inputElemHome = document.querySelector('.js-search-input-home');

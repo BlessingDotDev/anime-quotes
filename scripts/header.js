@@ -6,3 +6,12 @@ export function toggleSearch() {
     searchInput.classList.toggle('clicked-search');
   })
 }
+
+export function toggleMenu() {
+  const menuIcon = document.querySelector('.js-menu-icon');
+
+  menuIcon.addEventListener('click', () => {
+    const menuDropdown = document.querySelector('.js-menu-dropdown');
+    menuDropdown.classList.toggle('menu-open');
+  })
+}
