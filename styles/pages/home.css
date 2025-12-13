@@ -8,12 +8,18 @@
 .anime-option {
   font-size: var(--font-size-b);
   margin: var(--font-size-b) 0;
-  width: 100%;
-  padding: 5px 0;
+  padding: 5px;
   border: 1px solid var(--text-color);
   border-radius: 3px;
+  background-color: transparent;
   cursor: pointer;
   outline: none;
+  color: white;
+  border: none
+}
+
+.anime-option option {
+  color: black;
 }
 
 .anime-grid {

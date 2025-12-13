@@ -40,6 +40,25 @@ export function renderHTML() {
 toggleSearch();
 loadInitialAnime();
 
+const inputElemHome = document.querySelector('.js-search-input-home');
+const searchButtonHome = document.querySelector('.js-search-box-home');
+
+if (searchButtonHome) {
+  searchButtonHome.addEventListener('click', () => {
+    saveSearchValueHome();
+  })
+
+  inputElemHome.addEventListener('keydown', (event) => {
+    event.key === 'Enter' && saveSearchValueHome();
+  })
+}
+
+function saveSearchValueHome() {
+  const animeName = inputElemHome.value;
+  const encoded = encodeURIComponent(animeName);
+  window.location.href = `home.html?search=${encoded}`
+}
+
 async function loadAnime(category) {
   await loadAnimeListFetch(category);
   renderHTML();

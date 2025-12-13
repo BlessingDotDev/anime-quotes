@@ -89,6 +89,10 @@ header {
   align-items: center;
 }
 
+.search-box:hover {
+  cursor: pointer;
+}
+
 .search-icon {
   height: 15px
 }
