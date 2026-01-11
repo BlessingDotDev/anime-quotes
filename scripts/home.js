@@ -8,6 +8,10 @@ export function renderHTML() {
   let animeHTML = '';
 
   animeList.forEach((anime) => {
+    const name = anime.title ?? 'Unknown';
+    const ratings = anime.score ?? 'N/A';
+    const episodes = anime.episodes ?? 'N/A';
+    
     animeHTML += `
       <a href="characters.html?query=${anime.title}" class="anime-container">
         <img class="anime-cover-image" src="${anime.largeImage}" alt="" width="100%">
@@ -16,13 +20,13 @@ export function renderHTML() {
 
         <div class="anime-info">
           <p class="anime-name">
-            ${anime.title}
+            ${name}
           </p>
           
           <div class="anime-stats">
             <p></p>
-            <p class="ratings">${anime.score}</p>
-            <p class="view">${anime.episodes}</p>
+            <p class="ratings">TV: ${ratings}</p>
+            <p class="view">Ep: ${episodes}</p>
             </div>
             </div>
       
